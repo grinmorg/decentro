@@ -4,7 +4,7 @@
   >
     <section class="py-2 border-b">
       <ul>
-        <SidebarNavItem label="Home" icon="home" is-active />
+        <SidebarNavItem label="Homesss" icon="home" is-active />
         <SidebarNavItem label="Trending" icon="fire" />
         <SidebarNavItem label="Subscriptions" icon="collection" />
       </ul>
