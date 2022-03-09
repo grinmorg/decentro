@@ -7,7 +7,7 @@
     leave-from-class="opacity-100"
     leave-to-class="opacity-0"
   >
-    <TheSidebarMobileOverlay @click="$emit('closeMobileSidebar')" v-show="isOpen" />
+    <TheSidebarMobileOverlay @click="$emit('close')" v-show="isOpen" />
   </transition>
 
   <transition
@@ -18,9 +18,15 @@
     leave-from-class="translate-x-0"
     leave-to-class="-translate-x-full"
   >
-    <aside v-show="isOpen" class="w-64 max-h-screen overflow-auto bg-white fixed z-40">
+    <aside
+      ref="mobileSidebar"
+      v-show="isOpen"
+      @keydown.esc="$emit('close')"
+      tabindex="-1"
+      class="w-64 max-h-screen overflow-auto bg-white fixed z-40 outline-none"
+    >
       <section class="flex items-center p-4 border-b sticky top-0 bg-white">
-        <button @click="$emit('closeMobileSidebar')" class="ml-2 mr-6 focus:outline-none">
+        <button @click="$emit('close')" class="ml-2 mr-6 focus:outline-none">
           <BaseIcon name="menu" />
         </button>
         <LogoMain />
@@ -42,7 +48,7 @@ export default {
   },
 
   emits: {
-    closeMobileSidebar: null
+    close: null,
   },
 
   components: {
@@ -50,7 +56,13 @@ export default {
     LogoMain,
     BaseIcon,
     TheSidebarMobileOverlay,
-  }
+  },
+
+  watch: {
+    isOpen() {
+      this.$nextTick( () => this.isOpen && this.$refs.mobileSidebar.focus() ); // if isOpen return true, then the expression will be executed
+    },
+  },
 };
 </script>
 

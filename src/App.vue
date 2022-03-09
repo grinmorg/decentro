@@ -2,7 +2,7 @@
   <TheHeader @open-mobile-sidebar="openMobileSidebar"/>
   <TheSidebarSmall />
   <TheSidebar />
-  <TheSidebarMobile :is-open="isMobileSidebarOpen" @close-mobile-sidebar="closeMobileSidebar" />
+  <TheSidebarMobile :is-open="isMobileSidebarOpen" @close="closeMobileSidebar" />
   <TheCategories />
   <TheVideos />
 </template>
