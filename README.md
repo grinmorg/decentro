@@ -1,7 +1,28 @@
-# Vue 3 + Vite
+# Decentro
+*the project is still development*
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+> Decentro aspires to be a decentralized alternative to video broadcasting services.
 
-## Recommended IDE Setup
+## TODO:
+[ ] To complete HTML codding and transfer on Vue
+[ ] Create API with headless CMS Strapi
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+## Tech
+Use:
+- VueJS 3 + Vite - HTML enhanced for web apps and easy interaction with API
+- Strapi - awesome headless CMS for content-management
+
+
+## Installation
+
+``` bash
+# install dependencies
+$ npm install
+
+# serve with hot reload at localhost:3000
+$ npm run dev
+
+# build for production and launch server
+$ npm run build
+$ npm start
+```
