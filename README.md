@@ -1,7 +1,7 @@
 # Decentro
 *the project is still development*
 
-> Decentro aspires to be a decentralized alternative to video broadcasting services.
+> Decentro aspires to be video broadcasting services.
 
 ## TODO:
 [ ] To complete HTML codding and transfer on Vue
