@@ -1,7 +1,5 @@
 <template>
-  <aside
-    class="hidden xl:block w-64 max-h-screen overflow-auto fixed top-0 mt-20 bg-white z-20"
-  >
+  <aside :class="classes">
     <SidebarContent />
   </aside>
 </template>
@@ -9,8 +7,32 @@
 <script>
 import SidebarContent from "./SidebarContent.vue";
 export default {
+  props: {
+    isOpen: Boolean
+  },
+
   components: {
-    SidebarContent
+    SidebarContent,
+  },
+
+  data() {
+    return {};
+  },
+
+  computed: {
+    classes() {
+      return [
+        this.isOpen ? "xl:block" : "hidden",
+        "w-64",
+        "max-h-screen",
+        "overflow-auto",
+        "fixed",
+        "top-0",
+        "pt-12",
+        "bg-white",
+        "z-20",
+      ];
+    },
   },
 };
 </script>
