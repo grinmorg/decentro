@@ -56,6 +56,7 @@ export default {
       } else {
         this.isCompactSidebarOpen = this.isCompactSidebarActive;
         this.isSidebarOpen = !this.isCompactSidebarActive;
+        this.isMobileSidebarOpen = false;
       }
     },
     toggleSidebar() {

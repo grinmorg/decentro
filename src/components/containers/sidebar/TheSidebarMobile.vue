@@ -19,8 +19,8 @@
     leave-to-class="-translate-x-full"
   >
     <aside
-      ref="mobileSidebar"
       v-show="isOpen"
+      ref="mobileSidebar"
       @keydown.esc="$emit('close')"
       tabindex="-1"
       class="w-64 max-h-screen overflow-auto bg-white fixed z-40 outline-none"

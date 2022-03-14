@@ -13,7 +13,10 @@
     >
       <div
         v-show="isOpen"
-        class="absolute top-9 -right-full sm:right-0 bg-white w-72 border border-t-0"
+        ref="dropdown"
+        @keydown.esc="isOpen = false"
+        tabindex="-1"
+        class="absolute top-9 -right-full sm:right-0 bg-white w-72 border border-t-0 focus:outline-none"
       >
         <section class="py-2 border-b">
           <ul>
@@ -46,7 +49,13 @@ export default {
   components: {
     DropdownSettingsListItem,
   },
-
+  mounted() {
+    window.addEventListener("click", (event) => {
+      if (!this.$el.contains(event.target)) {
+        this.isOpen = false;
+      }
+    });
+  },
   data() {
     return {
       isOpen: false,
@@ -74,14 +83,11 @@ export default {
       ],
     };
   },
-
-  mounted() {
-    window.addEventListener("click", event => {
-      if( !this.$el.contains(event.target) ) {
-        this.isOpen = false;
-      }
-    })
-  }
+  watch: {
+    isOpen() {
+      this.$nextTick(() => this.isOpen && this.$refs.dropdown.focus()); // if isOpen return true, then the expression will be executed
+    },
+  },
 };
 </script>
 
