@@ -26,13 +26,10 @@
         <BaseIcon name="search" class="w-5 h-5" />
       </button>
       <button class="relative group p-2 focus:outline-none">
-        <BaseIcon name="viewGrid" class="w-5 h-5" />
-        
-        <!-- <TheDropdownApps /> -->
+        <TheDropdownApps />
       </button>
       <button class="relative group p-2 focus:outline-none">
-        <BaseIcon name="dotsVertical" class="w-5 h-5" />
-        <!-- <TheDropdownSettings /> -->
+        <TheDropdownSettings />
       </button>
       <ButtonLogin />
     </div>
@@ -45,7 +42,6 @@ import TheDropdownSettings from '../atoms/TheDropdownSettings.vue';
 import LogoMain from '../atoms/LogoMain.vue';
 import TheSearch from '../atoms/TheSearch.vue';
 import ButtonLogin from '../atoms/ButtonLogin.vue';
-import BaseIcon from '../atoms/base/BaseIcon.vue';
 
 export default {
   components: {
@@ -54,7 +50,6 @@ export default {
     LogoMain,
     TheSearch,
     ButtonLogin,
-    BaseIcon
   },
 
   emits: {
