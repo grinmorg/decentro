@@ -1,6 +1,9 @@
 <template>
   <div class="relative">
-    <BaseIcon @click="isOpen = !isOpen" name="viewGrid" class="w-5 h-5" />
+    <button class="relative group p-2 focus:outline-none">
+      <BaseIcon @click="isOpen = !isOpen" name="viewGrid" class="w-5 h-5" />
+    </button>
+    
     <transition
       enter-active-class="transition ease-out duration-100"
       enter-from-class="transition opacity-0 scale-95"

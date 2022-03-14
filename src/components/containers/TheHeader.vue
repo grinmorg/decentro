@@ -25,12 +25,9 @@
       <button class="sm:hidden p-2 focus:outline-none">
         <BaseIcon name="search" class="w-5 h-5" />
       </button>
-      <button class="relative group p-2 focus:outline-none">
-        <TheDropdownApps />
-      </button>
-      <button class="relative group p-2 focus:outline-none">
-        <TheDropdownSettings />
-      </button>
+      
+      <TheDropdownApps />
+      <TheDropdownSettings />
       <ButtonLogin />
     </div>
   </header>
