@@ -8,11 +8,7 @@
 </template>
 
 <script>
-import BaseIcon from '../atoms/base/BaseIcon.vue'
 export default {
-  components: {
-    BaseIcon
-  },
   props: {
     icon: String,
     label: String
