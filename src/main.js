@@ -1,10 +1,15 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import './index.css'
-import BaseIcon from './components/atoms/base/BaseIcon.vue'
+import { createApp } from "vue";
+import App from "./App.vue";
+import "./index.css";
 
-const app = createApp(App)
+// Global components import
+import BaseIcon from "./components/atoms/base/BaseIcon.vue";
+import BaseTooltip from "./components/atoms/base/BaseTooltip.vue";
 
-app.component('BaseIcon', BaseIcon)
+const app = createApp(App);
 
-app.mount('#app');
+// Global components add to app
+app.component("BaseIcon", BaseIcon);
+app.component("BaseTooltip", BaseTooltip);
+
+app.mount("#app");

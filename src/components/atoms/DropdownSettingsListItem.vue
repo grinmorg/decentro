@@ -1,7 +1,7 @@
 <template>
   <li>
     <a href="#" class="flex items-center px-4 py-2 text-sm hover:bg-gray-100">
-      <BaseIcon :name="icon" class="w-6 h-6 mr-3 text-gray-400" />
+      <BaseIcon v-if="icon" :name="icon" class="w-6 h-6 mr-3 text-gray-400" />
 
       <span> {{ label }} </span>
       <BaseIcon
