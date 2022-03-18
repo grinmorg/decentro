@@ -11,6 +11,7 @@
         <LogoMain />
       </div>
     </div>
+    <TheSearchMobile />
     <div
       class="hidden sm:flex items-center justify-end p-2.5 pl-8 md:pl-12 md:px-8 flex-1 lg:px-0 lg:w-1/2 max-w-screen-md"
     >
@@ -44,6 +45,8 @@
 </template>
 
 <script>
+import { defineAsyncComponent } from 'vue'
+
 import TheDropdownApps from "../atoms/TheDropdownApps.vue";
 import TheDropdownSettings from "../atoms/TheDropdownSettings.vue";
 import LogoMain from "../atoms/LogoMain.vue";
@@ -56,6 +59,7 @@ export default {
     TheDropdownSettings,
     LogoMain,
     TheSearch,
+    TheSearchMobile: defineAsyncComponent( () => import('../atoms/TheSearchMobile.vue') ),
     ButtonLogin,
   },
 

@@ -1,6 +1,11 @@
 <template>
   <div class="relative">
-    <div class="flex items-center h-full" @mouseenter="isShown = true" @mouseleave="isShown = false" @click="isShown = false">
+    <div
+      class="flex items-center h-full"
+      @mouseenter="isShown = true"
+      @mouseleave="isShown = false"
+      @click="isShown = false"
+    >
       <slot />
     </div>
     <transition
@@ -20,16 +25,14 @@
 export default {
   props: {
     text: String,
-    top: Boolean
+    top: Boolean,
+    right: Boolean,
+    left: Boolean,
   },
   data() {
     return {
       isShown: false,
-    };
-  },
-  computed: {
-    classes() {
-      return [
+      classes: [
         "bg-gray-600",
         "bg-opacity-80",
         "rounded-sm",
@@ -39,13 +42,24 @@ export default {
         "p-2",
         "absolute",
         "transform",
-        "-translate-x-1/2",
-        this.top ? "bottom-8" : "top-14",
-        "left-1/2",
-      ];
-    },
+        ...this.getPositionClasses()
+      ],
+    }
   },
   methods: {
+    getPositionClasses() {
+      const topClass = this.top ? "bottom-8" : "top-14"
+
+      if (this.right) {
+        return [topClass, 'left-0']
+      }
+
+      if (this.left) {
+        return [topClass, 'right-0']
+      }
+
+      return [topClass, "left-1/2", "-translate-x-1/2"]
+    }
   },
 };
 </script>
