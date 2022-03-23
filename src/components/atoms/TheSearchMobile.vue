@@ -1,9 +1,9 @@
 <template>
-  <div
-    class="z-10 bg-white fixed h-14 p-3 w-full flex items-center"
-  >
+  <div class="z-10 bg-white fixed h-14 p-3 w-full flex items-center">
     <BaseTooltip text="Back" right>
-      <BaseIcon name="arrowLeft" class="w-5 h-5 mr-2" />
+    <button class="mr-2 p-2 focus:outline-none" @click="$emit('close')">
+      <BaseIcon name="arrowLeft" class="w-5 h-5" />
+      </button>
     </BaseTooltip>
     <TheSearch />
     <BaseTooltip text="Voice searching" left>
@@ -15,12 +15,31 @@
 </template>
 
 <script>
-import TheSearch from './TheSearch.vue';
+import TheSearch from "./TheSearch.vue";
 
 export default {
+  emit: {
+    close: null,
+  },
   components: {
-    TheSearch
-  }
+    TheSearch,
+  },
+  mounted() {
+    window.addEventListener("click", this.onClick);
+  },
+
+  beforeUnmount() {
+    window.removeEventListener("click", this.onClick);
+  },
+
+  methods: {
+    onClick(event) {
+      if (!this.$el.contains(event.target)) {
+        // если корневой элемент компонента НЕ содержит тот элемент по которому тыкнули, можно закрывать
+        this.$emit("close");
+      }
+    },
+  },
 };
 </script>
 
