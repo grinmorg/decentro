@@ -24,36 +24,21 @@
         tabindex="-1"
         :class="dropdownClasses"
       >
-        <section class="py-2 border-b">
-          <ul>
-            <DropdownSettingsListItem
-              v-for="listItem in listItems.slice(0, listItems.length - 1)"
-              :key="listItem.label"
-              :label="listItem.label"
-              :icon="listItem.icon"
-              :with-sub-menu="listItem.withSubMenu"
-            />
-          </ul>
-        </section>
-        <section class="py-2">
-          <ul>
-            <DropdownSettingsListItem
-              :label="listItems[listItems.length - 1].label"
-              :with-sub-menu="listItems[listItems.length - 1].withSubMenu"
-            />
-          </ul>
-        </section>
+        <TheDropdownSettingsMain v-if="selectedMenu === 'main'" @select-menu="showSelectedMenu" />
+        <TheDropdownSettingsAppearance v-else-if="selectedMenu === 'appearance'" />
       </div>
     </transition>
   </div>
 </template>
 
 <script>
-import DropdownSettingsListItem from "./DropdownSettingsListItem.vue";
+import TheDropdownSettingsMain from "./TheDropdownSettingsMain.vue";
+import TheDropdownSettingsAppearance from "./TheDropdownSettingsAppearance.vue";
 
 export default {
   components: {
-    DropdownSettingsListItem,
+    TheDropdownSettingsMain,
+    TheDropdownSettingsAppearance
   },
   mounted() {
     window.addEventListener("click", (event) => {
@@ -65,6 +50,7 @@ export default {
   data() {
     return {
       isOpen: false,
+      selectedMenu: 'main',
       dropdownClasses: [
         "z-10",
         "absolute",
@@ -77,28 +63,6 @@ export default {
         "border-t-0",
         "focus:outline-none",
       ],
-      listItems: [
-        {
-          label: "Settings",
-          icon: "cog",
-          withSubMenu: true,
-        },
-        {
-          label: "Help",
-          icon: "questionMarkCircle",
-          withSubMenu: false,
-        },
-        {
-          label: "Keyboard shortcuts",
-          icon: "calculator",
-          withSubMenu: false,
-        },
-        {
-          label: "Restricted Mode: Off",
-          icon: null,
-          withSubMenu: true,
-        },
-      ],
     };
   },
   computed() {},
@@ -107,6 +71,11 @@ export default {
       this.$nextTick(() => this.isOpen && this.$refs.dropdown.focus()); // if isOpen return true, then the expression will be executed
     },
   },
+  methods: {
+    showSelectedMenu(selectedMenu) {
+      this.selectedMenu = selectedMenu;
+    }
+  }
 };
 </script>
 
