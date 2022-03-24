@@ -1,5 +1,5 @@
 <template>
-  <div class="z-10 bg-white fixed h-14 p-3 w-full flex items-center">
+  <div class="absolute z-10 p-2 w-full flex items-center">
     <BaseTooltip text="Back" right>
     <button class="mr-2 p-2 focus:outline-none" @click="$emit('close')">
       <BaseIcon name="arrowLeft" class="w-5 h-5" />
