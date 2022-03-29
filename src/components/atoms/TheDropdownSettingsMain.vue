@@ -3,11 +3,11 @@
     <ul>
       <DropdownSettingsListItem
         v-for="listItem in listItems.slice(0, listItems.length - 1)"
-        :key="listItem.label"
+        :key="listItem.id"
         :label="listItem.label"
         :icon="listItem.icon"
         :with-sub-menu="listItem.withSubMenu"
-        @click.stop="$emit('select-menu', 'appearance')"
+        @click.stop="$emit('select-menu', listItem.id)"
       />
     </ul>
   </section>
@@ -35,21 +35,37 @@ export default {
     return {
       listItems: [
         {
-          label: "Settings",
-          icon: "cog",
+          id: 'appearance',
+          label: "Appearance: Light",
+          icon: "sun",
           withSubMenu: true,
         },
         {
+          id: 'language',
+          label: "Language",
+          icon: "translate",
+          withSubMenu: true,
+        },
+        {
+          id: 'settings',
+          label: "Settings",
+          icon: "cog",
+          withSubMenu: false,
+        },
+        {
+          id: 'help',
           label: "Help",
           icon: "questionMarkCircle",
           withSubMenu: false,
         },
         {
+          id: 'keyboard_shortcuts',
           label: "Keyboard shortcuts",
           icon: "calculator",
           withSubMenu: false,
         },
         {
+          id: 'mode',
           label: "Restricted Mode: Off",
           icon: null,
           withSubMenu: true,

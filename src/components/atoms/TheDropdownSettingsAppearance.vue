@@ -1,19 +1,14 @@
 <template>
-  <section class="flex border-b border-gray-200 text-black">
-    <button @click.stop="$emit('select-menu', 'main')" class="px-3 focus:outline-none">
-      <BaseIcon name="arrowLeft" />
-    </button>
-    <span class="py-3">Appearance</span>
-  </section>
-  <section class="py-2 border-b">
+  <DropdownSettingsHeader title="Appearance" @back="$emit('select-menu', 'main')" />
+  <section class="py-2">
     <div class="text-gray-500 text-xs p-3">
       Setting applies to this browser only
     </div>
     <ul>
       <DropdownSettingsListItem
-        v-for="(theme, themeId) in themes"
+        v-for="(themeName, themeId) in themes"
         :key="themeId"
-        :label="theme"
+        :label="themeName"
         :active="themeId === selectedThemeId"
         @click="selectedThemeId = themeId"
       />
@@ -23,6 +18,7 @@
 
 <script>
 import DropdownSettingsListItem from "./DropdownSettingsListItem.vue";
+import DropdownSettingsHeader from "./DropdownSettingsHeader.vue";
 
 export default {
   emits: [
@@ -30,6 +26,7 @@ export default {
   ],
   components: {
     DropdownSettingsListItem,
+    DropdownSettingsHeader
   },
   data() {
     return {
