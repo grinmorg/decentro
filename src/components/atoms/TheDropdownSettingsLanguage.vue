@@ -4,7 +4,7 @@
     @back="$emit('select-menu', 'main')"
   />
   <section class="py-2">
-    <ul>
+    <ul class="max-h-96 overflow-auto">
       <DropdownSettingsListItem
         v-for="(language, languageId) in languages"
         :key="languageId"
@@ -28,8 +28,8 @@ export default {
   },
   data() {
     return {
-      selectedLanguageId: 0, // id выбранной темы
-      languages: ["English", "Russian"], // все темы
+      selectedLanguageId: 0, // id выбраннго языка
+      languages: ["English", "Russian"], // все языки
     };
   },
 };

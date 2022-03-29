@@ -15,7 +15,9 @@
     <ul>
       <DropdownSettingsListItem
         :label="listItems[listItems.length - 1].label"
+        :icon="listItems[listItems.length - 1].icon"
         :with-sub-menu="listItems[listItems.length - 1].withSubMenu"
+        @click.stop="$emit('select-menu', listItems[listItems.length - 1].id)"
       />
     </ul>
   </section>
@@ -65,7 +67,7 @@ export default {
           withSubMenu: false,
         },
         {
-          id: 'mode',
+          id: 'restricted_mode',
           label: "Restricted Mode: Off",
           icon: null,
           withSubMenu: true,

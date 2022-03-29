@@ -32,6 +32,10 @@
           v-else-if="selectedMenu === 'language'"
           @select-menu="showSelectedMenu"
         />
+        <TheDropdownSettingsRestrictedMode
+          v-else-if="selectedMenu === 'restricted_mode'"
+          @select-menu="showSelectedMenu"
+        />
       </div>
     </transition>
   </div>
@@ -41,12 +45,14 @@
 import TheDropdownSettingsMain from "./TheDropdownSettingsMain.vue";
 import TheDropdownSettingsAppearance from "./TheDropdownSettingsAppearance.vue";
 import TheDropdownSettingsLanguage from "./TheDropdownSettingsLanguage.vue";
+import TheDropdownSettingsRestrictedMode from "./TheDropdownSettingsRestrictedMode.vue";
 
 export default {
   components: {
     TheDropdownSettingsMain,
     TheDropdownSettingsAppearance,
-    TheDropdownSettingsLanguage
+    TheDropdownSettingsLanguage,
+    TheDropdownSettingsRestrictedMode
   },
   mounted() {
     window.addEventListener("click", (event) => {

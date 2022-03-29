@@ -6,7 +6,9 @@
         :name="iconName"
         class="w-5 h-5 mr-3 text-gray-400"
       />
-      <span :class="{ 'ml-8': !isIconShown }">{{ label }}</span>
+      <span class="truncate flex-1" :class="{ 'ml-8': icon && !isIconShown }">{{
+        label
+      }}</span>
       <BaseIcon
         v-if="withSubMenu"
         name="chevronRight"
@@ -34,7 +36,8 @@ export default {
   },
   computed: {
     isIconShown() {
-      return this.active || this.icon !== "check";
+      return this.active || (this.icon !== "check" && this.icon !== null);
+      // Вернёт true только в том случае если свойство active === true или если icon !== "check" или null
     },
     iconName() {
       return this.active ? "check" : this.icon;
