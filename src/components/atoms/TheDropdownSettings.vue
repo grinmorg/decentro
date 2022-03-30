@@ -20,22 +20,7 @@
         tabindex="-1"
         :class="dropdownClasses"
       >
-        <TheDropdownSettingsMain
-          v-if="selectedMenu === 'main'"
-          @select-menu="showSelectedMenu"
-        />
-        <TheDropdownSettingsAppearance
-          v-else-if="selectedMenu === 'appearance'"
-          @select-menu="showSelectedMenu"
-        />
-        <TheDropdownSettingsLanguage
-          v-else-if="selectedMenu === 'language'"
-          @select-menu="showSelectedMenu"
-        />
-        <TheDropdownSettingsRestrictedMode
-          v-else-if="selectedMenu === 'restricted_mode'"
-          @select-menu="showSelectedMenu"
-        />
+        <component :is="menu" @select-menu="showSelectedMenu" />
       </div>
     </transition>
   </div>
@@ -52,7 +37,7 @@ export default {
     TheDropdownSettingsMain,
     TheDropdownSettingsAppearance,
     TheDropdownSettingsLanguage,
-    TheDropdownSettingsRestrictedMode
+    TheDropdownSettingsRestrictedMode,
   },
   mounted() {
     window.addEventListener("click", (event) => {
@@ -79,7 +64,18 @@ export default {
       ],
     };
   },
-  computed() {},
+  computed: {
+    menu() {
+      const menuComponentsNames = {
+        main: "TheDropdownSettingsMain",
+        appearance: "TheDropdownSettingsAppearance",
+        language: "TheDropdownSettingsLanguage",
+        restricted_mode: "TheDropdownSettingsRestrictedMode",
+      };
+
+      return menuComponentsNames[this.selectedMenu];
+    },
+  },
   watch: {
     isOpen() {
       this.$nextTick(() => this.isOpen && this.$refs.dropdown.focus()); // if isOpen return true, then the expression will be executed

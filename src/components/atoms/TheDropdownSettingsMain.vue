@@ -7,7 +7,7 @@
         :label="listItem.label"
         :icon="listItem.icon"
         :with-sub-menu="listItem.withSubMenu"
-        @click.stop="$emit('select-menu', listItem.id)"
+        @click.stop="selectMenu(listItem)"
       />
     </ul>
   </section>
@@ -17,7 +17,7 @@
         :label="listItems[listItems.length - 1].label"
         :icon="listItems[listItems.length - 1].icon"
         :with-sub-menu="listItems[listItems.length - 1].withSubMenu"
-        @click.stop="$emit('select-menu', listItems[listItems.length - 1].id)"
+        @click.stop="selectMenu(listItems[listItems.length - 1])"
       />
     </ul>
   </section>
@@ -27,9 +27,7 @@
 import DropdownSettingsListItem from "./DropdownSettingsListItem.vue";
 
 export default {
-  emits: [
-    'select-menu'
-  ],
+  emits: ["select-menu"],
   components: {
     DropdownSettingsListItem,
   },
@@ -37,43 +35,50 @@ export default {
     return {
       listItems: [
         {
-          id: 'appearance',
+          id: "appearance",
           label: "Appearance: Light",
           icon: "sun",
           withSubMenu: true,
         },
         {
-          id: 'language',
+          id: "language",
           label: "Language",
           icon: "translate",
           withSubMenu: true,
         },
         {
-          id: 'settings',
+          id: "settings",
           label: "Settings",
           icon: "cog",
           withSubMenu: false,
         },
         {
-          id: 'help',
+          id: "help",
           label: "Help",
           icon: "questionMarkCircle",
           withSubMenu: false,
         },
         {
-          id: 'keyboard_shortcuts',
+          id: "keyboard_shortcuts",
           label: "Keyboard shortcuts",
           icon: "calculator",
           withSubMenu: false,
         },
         {
-          id: 'restricted_mode',
+          id: "restricted_mode",
           label: "Restricted Mode: Off",
           icon: null,
           withSubMenu: true,
         },
       ],
-    }
+    };
+  },
+  methods: {
+    selectMenu(listItem) {
+      if (listItem.withSubMenu) {
+        this.$emit("select-menu", listItem.id);
+      }
+    },
   },
 };
 </script>
