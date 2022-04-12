@@ -9,8 +9,8 @@
         v-for="(themeName, themeId) in themes"
         :key="themeId"
         :label="themeName"
-        :active="themeId === selectedThemeId"
-        @click="selectedThemeId = themeId"
+        :active="themeId === selectedOptions.themeId"
+        @click="selectOption(themeId)"
       />
     </ul>
   </section>
@@ -21,8 +21,10 @@ import DropdownSettingsListItem from "./DropdownSettingsListItem.vue";
 import DropdownSettingsHeader from "./DropdownSettingsHeader.vue";
 
 export default {
+  props: ['selectedOptions'],
   emits: [
-    'select-menu'
+    'select-menu', 
+    'select-option'
   ],
   components: {
     DropdownSettingsListItem,
@@ -30,10 +32,15 @@ export default {
   },
   data() {
     return {
-      selectedThemeId: 0, // id выбранной темы
       themes: ["Use device theme", "Light theme", "Dark theme"], // все темы
     };
   },
+
+  methods: {
+    selectOption (themeId) {
+      this.$emit('select-option', { name: 'themeId', value: themeId })
+    }
+  }
 };
 </script>
 

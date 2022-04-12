@@ -9,8 +9,8 @@
         v-for="(language, languageId) in languages"
         :key="languageId"
         :label="language"
-        :active="languageId === selectedLanguageId"
-        @click="selectedLanguageId = languageId"
+        :active="languageId === selectedOptions.languageId"
+        @click="selectOption(languageId)"
       />
     </ul>
   </section>
@@ -21,16 +21,21 @@ import DropdownSettingsListItem from "./DropdownSettingsListItem.vue";
 import DropdownSettingsHeader from "./DropdownSettingsHeader.vue";
 
 export default {
-  emits: ["select-menu"],
+  props: ["selectedOptions"],
+  emits: ["select-menu", "select-option"],
   components: {
     DropdownSettingsListItem,
     DropdownSettingsHeader,
   },
   data() {
     return {
-      selectedLanguageId: 0, // id выбраннго языка
       languages: ["English", "Russian"], // все языки
     };
+  },
+  methods: {
+    selectOption(languageId) {
+      this.$emit("select-option", { name: "languageId", value: languageId });
+    },
   },
 };
 </script>

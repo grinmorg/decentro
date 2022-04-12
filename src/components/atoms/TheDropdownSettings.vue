@@ -20,7 +20,12 @@
         tabindex="-1"
         :class="dropdownClasses"
       >
-        <component :is="menu" @select-menu="showSelectedMenu" />
+        <component
+          :is="menu"
+          @select-menu="showSelectedMenu"
+          @select-option="selectOption"
+          :selected-options="selectedOptions"
+        />
       </div>
     </transition>
   </div>
@@ -50,6 +55,11 @@ export default {
     return {
       isOpen: false,
       selectedMenu: "main",
+      selectedOptions: {
+        themeId: 0,
+        languageId: 0,
+        restrictedMode: false,
+      },
       dropdownClasses: [
         "z-10",
         "absolute",
@@ -92,6 +102,9 @@ export default {
     },
     open() {
       this.isOpen = true;
+    },
+    selectOption(option) {
+      this.selectedOptions[option.name] = option.value
     },
     toggle() {
       this.isOpen ? this.close() : this.open();

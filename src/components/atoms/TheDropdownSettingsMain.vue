@@ -31,6 +31,8 @@ export default {
   components: {
     DropdownSettingsListItem,
   },
+  props: ["selectedOptions"],
+  emits: ["select-menu", "select-option"],
   data() {
     return {
       listItems: [
