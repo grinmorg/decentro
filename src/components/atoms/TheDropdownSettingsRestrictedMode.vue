@@ -1,18 +1,18 @@
 <template>
   <DropdownSettingsHeader
-    title="Restricted Mode"
+    title="Безопасный режим"
     @back="$emit('select-menu', 'main')"
   />
   <section class="px-3 py-4 space-y-4 text-black text-sm">
     <p>
-      This helps hide potentially mature videos. No filter is 100% accurate.
+      Данный режим позваляет скрыть весь контент для взрослых.
     </p>
-    <p>This setting only applies to this browser.</p>
+    <p>Данные настройки будут сохранены в браузере.</p>
     <div class="text-gray-600 font-semibold flex items-center">
-      <span class="uppercase mr-2">Activate restricted mode</span>
+      <span class="uppercase mr-2">Активировать режим</span>
       <input
         type="checkbox"
-        :checked="selectedOptions.restrictedMode"
+        :checked="selectedOptions.restrictedMode.enabled"
         @input="selectOption"
       />
     </div>
@@ -29,9 +29,12 @@ export default {
   emits: ["select-menu", "select-option"],
   methods: {
     selectOption($event) {
+      const enabled = $event.target.checked
+      const value = { enabled, text: enabled ? "ON" : "OFF"  }
+
       this.$emit("select-option", {
         name: "restrictedMode",
-        value: $event.target.checked,
+        value,
       });
     },
   },

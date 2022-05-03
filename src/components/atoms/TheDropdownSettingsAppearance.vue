@@ -1,16 +1,16 @@
 <template>
-  <DropdownSettingsHeader title="Appearance" @back="$emit('select-menu', 'main')" />
+  <DropdownSettingsHeader title="Тема" @back="$emit('select-menu', 'main')" />
   <section class="py-2">
     <div class="text-gray-500 text-xs p-3">
-      Setting applies to this browser only
+      Настройки сохранятся в вашем браузере
     </div>
     <ul>
       <DropdownSettingsListItem
         v-for="(themeName, themeId) in themes"
         :key="themeId"
         :label="themeName"
-        :active="themeId === selectedOptions.themeId"
-        @click="selectOption(themeId)"
+        :active="themeId === selectedOptions.theme.id"
+        @click="selectOption({ id: themeId, text: themeName })"
       />
     </ul>
   </section>
@@ -32,13 +32,13 @@ export default {
   },
   data() {
     return {
-      themes: ["Use device theme", "Light theme", "Dark theme"], // все темы
+      themes: ["Светлая тема", "Тёмная тема"], // все темы
     };
   },
 
   methods: {
-    selectOption (themeId) {
-      this.$emit('select-option', { name: 'themeId', value: themeId })
+    selectOption (theme) {
+      this.$emit('select-option', { name: 'theme', value: theme })
     }
   }
 };

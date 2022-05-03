@@ -1,16 +1,16 @@
 <template>
   <DropdownSettingsHeader
-    title="Choose your language"
+    title="Выбирите нужный язык"
     @back="$emit('select-menu', 'main')"
   />
   <section class="py-2">
     <ul class="max-h-96 overflow-auto">
       <DropdownSettingsListItem
-        v-for="(language, languageId) in languages"
+        v-for="(languageName, languageId) in languages"
         :key="languageId"
-        :label="language"
-        :active="languageId === selectedOptions.languageId"
-        @click="selectOption(languageId)"
+        :label="languageName"
+        :active="languageId === selectedOptions.language.id"
+        @click="selectOption({ id: languageId,  text: languageName})"
       />
     </ul>
   </section>
@@ -29,12 +29,12 @@ export default {
   },
   data() {
     return {
-      languages: ["English", "Russian"], // все языки
+      languages: ["English", "Русский"], // все языки
     };
   },
   methods: {
-    selectOption(languageId) {
-      this.$emit("select-option", { name: "languageId", value: languageId });
+    selectOption(language) {
+      this.$emit("select-option", { name: "language", value: language });
     },
   },
 };

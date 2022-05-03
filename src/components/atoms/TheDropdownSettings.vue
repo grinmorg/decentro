@@ -56,9 +56,18 @@ export default {
       isOpen: false,
       selectedMenu: "main",
       selectedOptions: {
-        themeId: 0,
-        languageId: 0,
-        restrictedMode: false,
+        theme: {
+          id: 0,
+          text: 'Светлая тема'
+        },
+        language: {
+          id: 0,
+          text: 'English'
+        },
+        restrictedMode: {
+          enabled: false,
+          text: 'OFF'
+        },
       },
       dropdownClasses: [
         "z-10",

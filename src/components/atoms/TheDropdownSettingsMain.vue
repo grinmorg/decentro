@@ -38,13 +38,13 @@ export default {
       listItems: [
         {
           id: "appearance",
-          label: "Appearance: Light",
+          label: "Выбрано: " + this.selectedOptions.theme.text,
           icon: "sun",
           withSubMenu: true,
         },
         {
           id: "language",
-          label: "Language",
+          label: "Язык " + this.selectedOptions.language.text,
           icon: "translate",
           withSubMenu: true,
         },
@@ -68,7 +68,7 @@ export default {
         },
         {
           id: "restricted_mode",
-          label: "Restricted Mode: Off",
+          label: "Безопасный режим: " + this.selectedOptions.restrictedMode.text,
           icon: null,
           withSubMenu: true,
         },
