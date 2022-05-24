@@ -5,27 +5,15 @@
         <BaseIcon @click="toggle" name="dotsVertical" class="w-5 h-5" />
       </button>
     </BaseTooltip>
-    <transition
-      enter-active-class="transition ease-out duration-100"
-      enter-from-class="transition opacity-0 scale-95"
-      enter-to-class="transform opacity-100 scale-100"
-      leave-active-class="transition ease-in duration-75"
-      leave-from-class="transform opacity-100 scale-100"
-      leave-to-class="transform opacity-0 scale-95"
-    >
-      <div
-        v-show="isOpen"
-        ref="dropdown"
-        @keydown.esc="close"
-        tabindex="-1"
-        :class="dropdownClasses"
-      >
-        <component
-          :is="menu"
-          @select-menu="showSelectedMenu"
-          @select-option="selectOption"
-          :selected-options="selectedOptions"
-        />
+    <transition enter-active-class="transition ease-out duration-100" enter-from-class="transition opacity-0 scale-95"
+      enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75"
+      leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
+      <div v-show="isOpen" ref="dropdown" @keydown.esc="close" tabindex="-1" :class="dropdownClasses">
+        <component v-if="selectedMenu" :is="menu" :selected-options="selectedOptions" @select-option="selectOption"
+          @close="closeMenu" />
+
+        <TheDropdownSettingsMain v-else :menu-items="menuItems" @select-menu="selectMenu" />
+
       </div>
     </transition>
   </div>
@@ -54,7 +42,7 @@ export default {
   data() {
     return {
       isOpen: false,
-      selectedMenu: "main",
+      selectedMenu: null,
       selectedOptions: {
         theme: {
           id: 0,
@@ -86,13 +74,53 @@ export default {
   computed: {
     menu() {
       const menuComponentsNames = {
-        main: "TheDropdownSettingsMain",
         appearance: "TheDropdownSettingsAppearance",
         language: "TheDropdownSettingsLanguage",
         restricted_mode: "TheDropdownSettingsRestrictedMode",
       };
 
-      return menuComponentsNames[this.selectedMenu];
+      return this.selectedMenu !== null ? menuComponentsNames[this.selectedMenu.id] : null;
+    },
+
+    menuItems() {
+      return [
+        {
+          id: "appearance",
+          label: "Выбрано: " + this.selectedOptions.theme.text,
+          icon: "sun",
+          withSubMenu: true,
+        },
+        {
+          id: "language",
+          label: "Язык " + this.selectedOptions.language.text,
+          icon: "translate",
+          withSubMenu: true,
+        },
+        {
+          id: "settings",
+          label: "Settings",
+          icon: "cog",
+          withSubMenu: false,
+        },
+        {
+          id: "help",
+          label: "Help",
+          icon: "questionMarkCircle",
+          withSubMenu: false,
+        },
+        {
+          id: "keyboard_shortcuts",
+          label: "Keyboard shortcuts",
+          icon: "calculator",
+          withSubMenu: false,
+        },
+        {
+          id: "restricted_mode",
+          label: "Безопасный режим: " + this.selectedOptions.restrictedMode.text,
+          icon: null,
+          withSubMenu: true,
+        },
+      ]
     },
   },
   watch: {
@@ -101,25 +129,29 @@ export default {
     },
   },
   methods: {
-    showSelectedMenu(selectedMenu) {
-      this.selectedMenu = selectedMenu;
-      this.$refs.dropdown.focus();
-    },
     close() {
       this.isOpen = false;
-      setTimeout(() => (this.selectedMenu = "main"), 100);
+      setTimeout(() => this.closeMenu, 100);
+    },
+    selectMenu(menuItem) {
+      this.selectedMenu = menuItem;
+      this.$refs.dropdown.focus();
+    },
+    closeMenu() {
+      this.selectMenu(null);
     },
     open() {
       this.isOpen = true;
     },
-    selectOption(option) {
-      this.selectedOptions[option.name] = option.value
-    },
     toggle() {
       this.isOpen ? this.close() : this.open();
+    },
+    selectOption(option) {
+      this.selectedOptions[option.name] = option.value
     },
   },
 };
 </script>
 
-<style></style>
+<style>
+</style>

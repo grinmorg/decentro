@@ -10,7 +10,7 @@
     </a>
   </div>
   <div class="font-normal text-gray-500">
-    &copy; 2021 Google LLC
+    &copy; 2021 Grinmorg LLC
   </div>
 </template>
 
@@ -19,18 +19,15 @@ export default {
   data () {
     return {
       links: [
-        'About',
-        'Press',
-        'Copyright',
-        'Contact us',
-        'Creators',
-        'Advertise',
-        'Developers',
-        'Terms',
-        'Privacy',
-        'Policy & Safety',
-        'How YouTube works',
-        'Test new features'
+        'О нас',
+        'Пресса',
+        'Копирайт',
+        'Связь с нами',
+        'Основатели',
+        'Разработчики',
+        'Правила',
+        'Политика безопасности',
+        'Как мы работаем?'
       ]
     }
   }

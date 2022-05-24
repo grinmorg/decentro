@@ -1,57 +1,57 @@
 <template>
   <SidebarSection>
     <ul>
-      <SidebarNavItem label="Homes" icon="home" is-active />
-      <SidebarNavItem label="Trending" icon="fire" />
-      <SidebarNavItem label="Subscriptions" icon="collection" />
+      <SidebarNavItem label="Главная" icon="home" is-active />
+      <SidebarNavItem label="Топ" icon="fire" />
+      <SidebarNavItem label="Подписки" icon="collection" />
     </ul>
   </SidebarSection>
 
   <SidebarSection>
     <ul>
-      <SidebarNavItem label="Library" icon="duplicate" />
-      <SidebarNavItem label="History" icon="clock" />
+      <SidebarNavItem label="Библиотека" icon="duplicate" />
+      <SidebarNavItem label="История" icon="clock" />
     </ul>
   </SidebarSection>
 
   <section class="px-8 py-4 font-medium leading-5 border-b">
     <span class="text-sm">
-      Sign in to like videos, comment, and subscribe.
+      Авторизуйтесь и вам будут доступны комментарии и подписки.
     </span>
     <ButtonLogin
       class="focus:outline-none flex items-center px-2 py-0.5 mt-3 text-sm text-blue-700 uppercase border border-blue-700 rounded-sm"
     />
   </section>
   <SidebarSection>
-    <SidebarSectionHeading title="Best of YouTube" />
+    <SidebarSectionHeading title="Лучшее" />
     <ul>
-      <SidebarNavItem label="Music" icon="musicNote" />
-      <SidebarNavItem label="Sports" icon="speakerphone" />
-      <SidebarNavItem label="Gaming" icon="puzzle" />
-      <SidebarNavItem label="Movies" icon="film" />
-      <SidebarNavItem label="News" icon="newspaper" />
+      <SidebarNavItem label="Музыка" icon="musicNote" />
+      <SidebarNavItem label="Спорт" icon="speakerphone" />
+      <SidebarNavItem label="Игры" icon="puzzle" />
+      <SidebarNavItem label="Фильмы" icon="film" />
+      <SidebarNavItem label="Новости" icon="newspaper" />
       <SidebarNavItem label="Live" icon="statusOnline" />
-      <SidebarNavItem label="360&deg; Video" icon="eye" />
+      <SidebarNavItem label="360&deg; видео" icon="eye" />
     </ul>
   </SidebarSection>
   <SidebarSection>
     <ul>
-      <SidebarNavItem label="Browse Channels" icon="plusCircle" />
+      <SidebarNavItem label="Добавить интерес" icon="plusCircle" />
     </ul>
   </SidebarSection>
   <SidebarSection>
-    <SidebarSectionHeading title="More from YouTube" />
+    <SidebarSectionHeading title="Еще больше" />
     <ul>
-      <SidebarNavItem label="YouTube Premium" icon="play" />
+      <SidebarNavItem label="Премиум" icon="play" />
       <SidebarNavItem label="Live" icon="statusOnline" />
     </ul>
   </SidebarSection>
   <SidebarSection>
     <ul>
-      <SidebarNavItem label="Settings" icon="cog" />
-      <SidebarNavItem label="Report history" icon="flag" />
-      <SidebarNavItem label="Help" icon="questionMarkCircle" />
-      <SidebarNavItem label="Send feedback" icon="annotation" />
+      <SidebarNavItem label="Настройки" icon="cog" />
+      <SidebarNavItem label="Помощь" icon="questionMarkCircle" />
+      <SidebarNavItem label="Жалобы" icon="flag" />
+      <SidebarNavItem label="Предложения" icon="annotation" />
     </ul>
   </SidebarSection>
 
