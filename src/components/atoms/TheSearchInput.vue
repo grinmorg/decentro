@@ -1,8 +1,8 @@
 <template>
   <div class="relative w-full">
-    <input type="text" placeholder="Search" :class="classes" :value="query" @input="$emit('update:query', $event.target.value)" />
+    <input type="text" placeholder="Search" :class="classes" :value="query" @input="updateQuery($event.target.value)" />
 
-    <button v-show="query" @click="$emit('update:query', '')" class="absolute top-0 right-0 h-full px-3 focus:outline-none">
+    <button v-show="query" @click="updateQuery('')" class="absolute top-0 right-0 h-full px-3 focus:outline-none">
       <BaseIcon name="x" class="w-5 h-5" />
     </button>
   </div>
@@ -33,6 +33,11 @@ export default {
       this.$el.focus();
     }
   },
+  methods: {
+    updateQuery(query) {
+      this.$emit('update:query', query)
+    }
+  }
 };
 </script>
 

@@ -2,7 +2,7 @@
   <div class="flex w-full mr-2">
     <div class="relative flex w-full">
       <TheSearchInput v-model:query="query" />
-      <TheSearchResults v-show="query.length" :results="results" />
+      <TheSearchResults v-show="results.length" :results="results" />
     </div>
     <TheSearchButton />
   </div>
@@ -41,14 +41,22 @@ export default {
   },
   computed: {
     results() {
+      if (!this.query) {
+        return []
+      }
+
       // фильтрую и возвращаю только значения которые включают query запрос
       return this.keywords.filter(result => {
-        return result.includes(this.query);
+        return result.includes(this.trimmedQuery);
       })
+    },
+    trimmedQuery() {
+      return this.query.replace(/\s+/g, ' ').trim()
     }
   }
-  
+
 };
 </script>
 
-<style></style>
+<style>
+</style>
