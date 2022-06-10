@@ -1,7 +1,8 @@
 <template>
   <div class="relative w-full">
-    <input type="text" placeholder="Search" v-bind="$attrs" :class="classes" :value="query"
-      @input="updateQuery($event.target.value)" />
+    <input type="text" placeholder="Search" ref="input" :class="classes" :value="query"
+      @input="updateQuery($event.target.value)" @focus="setState(true)" @blur="setState(false)" @click="setState(true)"
+      @keyup.esc="handleEsc" />
 
     <button v-show="query" @click="updateQuery('')" class="absolute top-0 right-0 h-full px-3 focus:outline-none">
       <BaseIcon name="x" class="w-5 h-5" />
@@ -11,9 +12,9 @@
 
 <script>
 export default {
-  inheritAttrs: false,
   data() {
     return {
+      isActive: false,
       classes: [
         "w-full",
         "h-full",
@@ -28,8 +29,8 @@ export default {
       ],
     };
   },
-  props: ['query'],
-  emits: ['update:query'],
+  props: ['query', 'hasResults'],
+  emits: ['update:query', 'change-state'],
   mounted() {
     if (window.innerWidth < 640) {
       this.$el.focus();
@@ -38,6 +39,24 @@ export default {
   methods: {
     updateQuery(query) {
       this.$emit('update:query', query)
+      this.setState(this.isActive);
+    },
+    setState(isActive) {
+      this.isActive = isActive;
+
+      this.$emit('change-state', isActive)
+    },
+    handleEsc() {
+      this.removeSelection()
+      if (this.isActive && this.hasResults) {
+        this.setState(false)
+      } else {
+        this.$refs.input.blur()
+      }
+    },
+    removeSelection() {
+      const end = this.$refs.input.value.length
+      this.$refs.input.setSelectionRange(end, end) // убирает выделение текста
     }
   }
 };
