@@ -4,7 +4,7 @@
       @input="updateQuery($event.target.value)" @focus="setState(true)" @blur="setState(false)" @click="setState(true)"
       @keyup.esc="handleEsc" />
 
-    <button v-show="query" @click="updateQuery('')" class="absolute top-0 right-0 h-full px-3 focus:outline-none">
+    <button v-show="query" @click="clear" class="absolute top-0 right-0 h-full px-3 focus:outline-none">
       <BaseIcon name="x" class="w-5 h-5" />
     </button>
   </div>
@@ -33,10 +33,25 @@ export default {
   emits: ['update:query', 'change-state'],
   mounted() {
     if (window.innerWidth < 640) {
-      this.$el.focus();
+      this.$refs.input.focus();
     }
+
+    document.addEventListener( 'keydown', this.onKeydown );
+  },
+  beforeUnmount() {
+    document.removeEventListener( 'keydown', this.onKeydown );
   },
   methods: {
+    onKeydown(event) {
+      const isInputFocused = this.$refs.input === document.activeElement
+
+      if (event.code === 'Slash' && !isInputFocused) {
+        // если была нажата клавиша слешь и нету фокуса на инпуте
+        event.preventDefault();
+        
+        this.$refs.input.focus();
+      }
+    },  
     updateQuery(query) {
       this.$emit('update:query', query)
       this.setState(this.isActive);
@@ -57,6 +72,11 @@ export default {
     removeSelection() {
       const end = this.$refs.input.value.length
       this.$refs.input.setSelectionRange(end, end) // убирает выделение текста
+    },
+    clear() {
+      this.$refs.input.focus();
+
+      this.updateQuery('');
     }
   }
 };
