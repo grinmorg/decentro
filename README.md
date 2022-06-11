@@ -1,16 +1,16 @@
-# Decentro
+# Decentro - clone YouTube
 *the project is still development*
 
 > Decentro aspires to be video broadcasting services.
 
 ## TODO:
 [ ] To complete HTML codding and transfer on Vue
-[ ] Create API with headless CMS Strapi
+[ ] Connect to LBRY API
 
 ## Tech
 Use:
 - VueJS 3 + Vite - HTML enhanced for web apps and easy interaction with API
-- Strapi - awesome headless CMS for content-management
+- LBRY - it is a blockchain-based file sharing network
 
 
 ## Installation
