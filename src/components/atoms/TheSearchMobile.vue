@@ -1,11 +1,11 @@
 <template>
   <div class="absolute z-10 p-2 w-full flex items-center">
     <BaseTooltip text="Back" right>
-    <button class="mr-2 p-2 focus:outline-none" @click="$emit('close')">
-      <BaseIcon name="arrowLeft" class="w-5 h-5" />
+      <button class="mr-2 p-2 focus:outline-none" @click="$emit('close')">
+        <BaseIcon name="arrowLeft" class="w-5 h-5" />
       </button>
     </BaseTooltip>
-    <TheSearch />
+    <slot />
     <BaseTooltip text="Voice searching" left>
       <button class="p-2 focus:outline-none">
         <BaseIcon name="microphone" class="w-5 h-5" />
@@ -18,9 +18,9 @@
 import TheSearch from "./TheSearch.vue";
 
 export default {
-  emit: {
-    close: null,
-  },
+  emits: [
+    'close',
+  ],
   components: {
     TheSearch,
   },
@@ -43,4 +43,5 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+</style>

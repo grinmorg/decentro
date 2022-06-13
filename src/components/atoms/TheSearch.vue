@@ -18,9 +18,15 @@ export default {
     TheSearchButton,
     TheSearchResults
   },
+  emits: [
+    'update-search-query'
+  ],
+  props: [
+    'searchQuery'
+  ],
   data() {
     return {
-      query: '',
+      query: this.searchQuery,
       isSearchResultsShown: false,
       keywords: [
         'new york giants',
@@ -40,6 +46,11 @@ export default {
       ]
     }
   },
+  methods: {
+    toggleSearchResults(isSearchInputActive) {
+      this.isSearchResultsShown = isSearchInputActive && this.results.length;
+    }
+  },
   computed: {
     results() {
       if (!this.query) {
@@ -55,9 +66,9 @@ export default {
       return this.query.replace(/\s+/g, ' ').trim()
     },
   },
-  methods: {
-    toggleSearchResults(isSearchInputActive) {
-      this.isSearchResultsShown = isSearchInputActive && this.results.length;
+  watch: {
+    query(query) {
+      this.$emit('update-search-query', query);
     }
   }
 

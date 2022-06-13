@@ -1,46 +1,33 @@
 <template>
   <header :class="classes">
-    <div
-      :class="[
-        'lg:w-1/4',
-        'flex',
-        isMobileSearchShown ? 'opacity-0' : 'opacity-100',
-      ]"
-    >
+    <div :class="[
+      'lg:w-1/4',
+      'flex',
+      isMobileSearchShown ? 'opacity-0' : 'opacity-100',
+    ]">
       <div class="flex items-center xl:w-64 xl:bg-white pl-4">
-        <button
-          @click="$emit('toggleSidebar')"
-          class="mr-3 sm:ml-2 sm:mr-6 focus:outline-none"
-        >
+        <button @click="$emit('toggleSidebar')" class="mr-3 sm:ml-2 sm:mr-6 focus:outline-none">
           <BaseIcon name="menu" />
         </button>
         <LogoMain />
       </div>
     </div>
-    <TheSearchMobile v-if="isMobileSearchShown" @close="closeMobileSearch" />
-    <div
-      v-else
-      class="hidden sm:flex items-center justify-end p-2.5 pl-8 md:pl-12 md:px-8 flex-1 lg:px-0 lg:w-1/2 max-w-screen-md"
-    >
-      <TheSearch />
-      <BaseTooltip text="Voice searching">
-        <button class="p-2 focus:outline-none">
-          <BaseIcon name="microphone" class="w-5 h-5" />
-        </button>
-      </BaseTooltip>
-    </div>
-    <div
-      :class="[
-        'flex',
-        'items-center',
-        'justify-end',
-        'lg:w-1/4',
-        'sm:space-x-3',
-        'p-2',
-        'sm:px-4',
-        isMobileSearchShown ? 'opacity-0' : 'opacity-100',
-      ]"
-    >
+    <TheSearchMobile v-if="isMobileSearchShown" @close="closeMobileSearch">
+      <TheSearch :search-query="searchQuery" @update-search-query="searchQuery = $event" />
+    </TheSearchMobile>
+    <TheSearchMain v-else>
+      <TheSearch :search-query="searchQuery" @update-search-query="searchQuery = $event" />
+    </TheSearchMain>
+    <div :class="[
+      'flex',
+      'items-center',
+      'justify-end',
+      'lg:w-1/4',
+      'sm:space-x-3',
+      'p-2',
+      'sm:px-4',
+      isMobileSearchShown ? 'opacity-0' : 'opacity-100',
+    ]">
       <BaseTooltip text="Voice searching">
         <button class="sm:hidden p-2 focus:outline-none">
           <BaseIcon name="microphone" class="w-5 h-5" />
@@ -48,10 +35,7 @@
       </BaseTooltip>
 
       <BaseTooltip text="Search">
-        <button
-          @click.stop="isMobileSearchActive = true"
-          class="sm:hidden p-2 focus:outline-none"
-        >
+        <button @click.stop="isMobileSearchActive = true" class="sm:hidden p-2 focus:outline-none">
           <BaseIcon name="search" class="w-5 h-5" />
         </button>
       </BaseTooltip>
@@ -71,6 +55,7 @@ import TheDropdownSettings from "../atoms/TheDropdownSettings.vue";
 import LogoMain from "../atoms/LogoMain.vue";
 import TheSearch from "../atoms/TheSearch.vue";
 import ButtonLogin from "../atoms/ButtonLogin.vue";
+import TheSearchMain from "../atoms/TheSearchMain.vue";
 
 export default {
   emits: {
@@ -86,10 +71,12 @@ export default {
       import("../atoms/TheSearchMobile.vue")
     ),
     ButtonLogin,
+    TheSearchMain
   },
 
   data() {
     return {
+      searchQuery: "",
       isSmallScreen: false,
       isMobileSearchActive: false,
       classes: [
@@ -129,4 +116,5 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+</style>
