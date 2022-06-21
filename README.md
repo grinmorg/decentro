@@ -4,8 +4,8 @@
 > Decentro aspires to be video broadcasting services.
 
 ## TODO:
-[ ] To complete HTML codding and transfer on Vue
-[ ] Connect to LBRY API
+- To complete HTML codding and transfer on Vue
+- Connect to LBRY API
 
 ## Tech
 Use:
